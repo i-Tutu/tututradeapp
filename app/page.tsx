@@ -1,25 +1,27 @@
-// Add "use client" at the top of the file
 "use client";
 
 import { useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { ChevronDown, BarChart2, TrendingUp, Shield, Mail } from "lucide-react"
+import { ChevronDown, BarChart2, TrendingUp, Shield, Mail, Menu, X } from "lucide-react"
 
 export default function TUTUTRADELandingPage() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Here you would typically send this data to your backend
     console.log('Form submitted:', { name, email, message })
-    // Reset form fields
     setName('')
     setEmail('')
     setMessage('')
+  }
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen)
   }
 
   return (
@@ -28,7 +30,7 @@ export default function TUTUTRADELandingPage() {
       <header className="bg-blue-900 text-white p-4">
         <div className="container mx-auto flex justify-between items-center">
           <div className="text-2xl font-bold">TUTUTRADE</div>
-          <nav>
+          <nav className="hidden md:block">
             <ul className="flex space-x-4">
               <li><a href="#home" className="hover:text-yellow-400">Home</a></li>
               <li><a href="#services" className="hover:text-yellow-400">Services</a></li>
@@ -36,21 +38,36 @@ export default function TUTUTRADELandingPage() {
               <li><a href="#contact" className="hover:text-yellow-400">Contact</a></li>
             </ul>
           </nav>
+          <button onClick={toggleMenu} className="md:hidden">
+            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
         </div>
       </header>
 
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="md:hidden bg-blue-800 text-white">
+          <ul className="flex flex-col items-center py-4">
+            <li className="py-2"><a href="#home" onClick={toggleMenu}>Home</a></li>
+            <li className="py-2"><a href="#services" onClick={toggleMenu}>Services</a></li>
+            <li className="py-2"><a href="#about" onClick={toggleMenu}>About</a></li>
+            <li className="py-2"><a href="#contact" onClick={toggleMenu}>Contact</a></li>
+          </ul>
+        </div>
+      )}
+
       {/* Hero Section */}
-      <section id="home" className="bg-blue-800 text-white py-20">
-      <div 
+      <section id="home" className="bg-blue-800 text-white py-20 relative">
+        <div 
           className="absolute inset-0 bg-cover bg-center z-0" 
           style={{
             backgroundImage: "url('/placeholder.svg?height=1080&width=1920')",
             filter: "brightness(0.6)"
           }}
         ></div>
-        <div className="container mx-auto text-center">
-          <h1 className="text-5xl font-bold mb-4">Welcome to TUTUTRADE</h1>
-          <p className="text-xl mb-8">Your Trusted Partner in Forex Trading</p>
+        <div className="container mx-auto text-center relative z-10 px-4">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">Welcome to TUTUTRADE</h1>
+          <p className="text-lg md:text-xl mb-8">Your Trusted Partner in Forex Trading</p>
           <Button className="bg-yellow-400 text-blue-900 hover:bg-yellow-500">
             Get Started <ChevronDown className="ml-2 h-4 w-4" />
           </Button>
@@ -59,7 +76,7 @@ export default function TUTUTRADELandingPage() {
 
       {/* Services Section */}
       <section id="services" className="py-20 bg-gray-100">
-        <div className="container mx-auto text-black">
+        <div className="container mx-auto text-black px-4">
           <h2 className="text-3xl font-bold text-center text-black mb-12">Our Services</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-white p-6 rounded-lg shadow-md">
@@ -83,7 +100,7 @@ export default function TUTUTRADELandingPage() {
 
       {/* About Section */}
       <section id="about" className="py-20 bg-blue-900">
-        <div className="container mx-auto">
+        <div className="container mx-auto px-4">
           <h2 className="text-3xl text-white font-bold text-center mb-8">About TUTUTRADE</h2>
           <p className="text-white text-center max-w-2xl mx-auto">
             TUTUTRADE is a leading forex trading brand dedicated to helping traders succeed in the global currency markets. With years of experience and a commitment to excellence, we provide top-notch analysis, strategies, and support to our clients.
@@ -93,7 +110,7 @@ export default function TUTUTRADELandingPage() {
 
       {/* Contact Form */}
       <section id="contact" className="py-20 bg-gray-100">
-        <div className="container mx-auto max-w-md">
+        <div className="container mx-auto max-w-md px-4">
           <h2 className="text-3xl font-bold text-center text-black mb-8">Contact Us</h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             <Input
@@ -125,7 +142,7 @@ export default function TUTUTRADELandingPage() {
 
       {/* Footer */}
       <footer className="bg-blue-900 text-white py-8">
-        <div className="container mx-auto text-center">
+        <div className="container mx-auto text-center px-4">
           <p>&copy; 2025 TUTUTRADE. All rights reserved.</p>
           <div className="mt-4">
             <a href="mailto:info@tututrade.com" className="inline-flex items-center text-yellow-400 hover:underline">
