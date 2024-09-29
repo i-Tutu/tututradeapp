@@ -4,7 +4,8 @@ import { useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { ChevronDown, BarChart2, TrendingUp, Shield, Mail, Menu, X } from "lucide-react"
+import { ChevronDown, BarChart2, TrendingUp, Shield, Mail, Menu, X, Youtube } from "lucide-react"
+
 
 export default function TUTUTRADELandingPage() {
   const [name, setName] = useState('')
@@ -142,13 +143,23 @@ export default function TUTUTRADELandingPage() {
 
       {/* Footer */}
       <footer className="bg-blue-900 text-white py-8">
-        <div className="container mx-auto text-center px-4">
-          <p>&copy; 2025 TUTUTRADE. All rights reserved.</p>
-          <div className="mt-4">
-            <a href="mailto:info@tututrade.com" className="inline-flex items-center text-yellow-400 hover:underline">
-              <Mail className="mr-2 h-4 w-4" />
-              info@tututrade.com
-            </a>
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col items-center space-y-4">
+            <div className="flex items-center space-x-4">
+              <a href="mailto:tututrade7@gmail.com" className="inline-flex items-center text-yellow-400 hover:underline">
+                <Mail className="mr-2 h-4 w-4" />
+                tututrade7@gmail.com
+              </a>
+              <a href="https://www.youtube.com/tututrade" target="_blank" rel="noopener noreferrer" className="text-yellow-400 hover:text-yellow-300">
+                <Youtube className="h-6 w-6" />
+                <span className="sr-only">YouTube</span>
+              </a>
+              <a href="https://twitter.com/tututrade" target="_blank" rel="noopener noreferrer" className="text-yellow-400 hover:text-yellow-300">
+                <X className="h-6 w-6" />
+                <span className="sr-only">X (formerly Twitter)</span>
+              </a>
+            </div>
+            <p className="text-sm text-gray-400">&copy; 2025 TUTUTRADE. All rights reserved.</p>
           </div>
         </div>
       </footer>
