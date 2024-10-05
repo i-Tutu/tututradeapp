@@ -6,7 +6,6 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { ChevronDown, BarChart2, TrendingUp, Shield, Mail, Menu, X, Youtube, Images } from "lucide-react"
 import Image from 'next/image'
-import { Main } from 'next/document';
 
 const currencyPairs = [
   'EUR/USD', 'GBP/USD', 'USD/JPY', 'USD/CHF', 'AUD/USD', 'USD/CAD', 'NZD/USD', 'EUR/GBP', 'EUR/JPY', 'GBP/JPY',
